@@ -24,14 +24,17 @@ export default class App extends Component {
     componentDidMount() {
         const json = localStorage.getItem("recipes");
         const recipes = JSON.parse(json);
-        this.setState({
-            recipes
-        });
+        if (recipes)
+            this.setState({
+                recipes
+            });
     }
 
     componentDidUpdate() {
-        const recipes = JSON.stringify(this.state.recipes);
-        localStorage.setItem("recipes", recipes);
+        if (this.state.recipes) {
+            const recipes = JSON.stringify(this.state.recipes);
+            localStorage.setItem("recipes", recipes);
+        }
     }
 
     render() {
