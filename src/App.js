@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Recipes from "./components/Recipes";
 import Form from "./components/Form.jsx";
-import { ApiKey, CorsDisable } from "../key";
+import { ApiKey, CorsDisable } from "./key";
 export default class App extends Component {
     state = {
         recipes: []
