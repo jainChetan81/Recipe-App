@@ -3,8 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Recipes from "./components/Recipes";
 import Form from "./components/Form.jsx";
-const ApiKey = "4b54b9f509eedba0aa7a04bd0c0fd507";
-const CorsDisable = "http://cors-anywhere.herokuapp.com";
+import { ApiKey, CorsDisable } from "../key";
 export default class App extends Component {
     state = {
         recipes: []
