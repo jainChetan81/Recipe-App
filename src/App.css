@@ -116,7 +116,8 @@ input:-webkit-autofill {
 }
 
 .active-recipe__img {
-    height: 500px !important;
+    height: 400px !important;
+    width: 400px !important;
 }
 
 .active-recipe__title {

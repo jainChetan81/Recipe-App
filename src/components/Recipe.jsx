@@ -1,22 +1,28 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import queryString from "query-string";
 
 export default class Recipe extends Component {
     state = {
-        activeRecipe: []
+        activeRecipe: [],
     };
     componentDidMount = async () => {
-        const title = this.props.location.state.item;
-        const ApiKey = "4b54b9f509eedba0aa7a04bd0c0fd507";
-        const CorsDisable = "http://cors-anywhere.herokuapp.com";
-        const req = await fetch(
-            `${CorsDisable}/https://www.food2fork.com/api/search?key=${ApiKey}&q=${title}`
-        );
-        const res = await req.json();
-        this.setState({
-            activeRecipe: res.recipes[0]
-        });
-        console.log(this.state.activeRecipe);
+        const { location } = this.props;
+        const { recipe_id } = queryString.parse(location.search);
+        console.log(recipe_id);
+        // const recipieId = this.props.location.state.item;
+        await axios
+            .get(
+                "https://cors-anywhere.herokuapp.com/https://recipesapi.herokuapp.com/api/get?rId=" +
+                    recipe_id
+            )
+            .then((res) => {
+                console.log(res.data);
+                this.setState({
+                    activeRecipe: res.data.recipe,
+                });
+            });
     };
 
     render() {

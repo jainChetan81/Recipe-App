@@ -6,7 +6,7 @@ import Recipe from "./Recipe";
 const ReactRouter = () => (
     <Switch>
         <Route exact path="/" component={App} />
-        <Route path="/recipe/:id" component={Recipe} />
+        <Route path="/recipe" component={Recipe} />
     </Switch>
 );
 export default ReactRouter;

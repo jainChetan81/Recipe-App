@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Recipes = props => (
+const Recipes = (props) => (
     <div className="container">
         <div className="row">
-            {props.recipes.map(item => (
+            {props.recipes.map((item) => (
                 <div
-                    key={item.title}
+                    key={item._id}
                     className="col-md-4"
                     style={{ marginBottom: "2rem" }}>
                     <div className="recipes__box">
@@ -28,8 +28,8 @@ const Recipes = props => (
                         <button className="recipe_buttons">
                             <Link
                                 to={{
-                                    pathname: `/recipe/${item.recipe_id}`,
-                                    state: { item: item.title }
+                                    pathname: `/recipe?recipe_id=${item.recipe_id}`,
+                                    // state: { item: item.recipe_id },
                                 }}>
                                 View Recipe
                             </Link>

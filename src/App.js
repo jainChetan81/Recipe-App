@@ -3,30 +3,34 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Recipes from "./components/Recipes";
 import Form from "./components/Form.jsx";
-import { ApiKey, CorsDisable } from "./key";
+import axios from "axios";
 export default class App extends Component {
     state = {
-        recipes: []
+        recipes: [],
     };
-    getRecipe = async e => {
+    getRecipe = async (e) => {
         const recipeName = e.target.elements.recipeName.value;
         e.preventDefault();
         console.log(recipeName);
-        const ApiCall = await fetch(
-            `${CorsDisable}/https://www.food2fork.com/api/search?key=${ApiKey}&q=${recipeName}&count=5`
-        );
-        const data = await ApiCall.json();
-        this.setState({
-            recipes: [...data.recipes]
-        });
-        console.log(data);
+        axios
+            .get(
+                "https://cors-anywhere.herokuapp.com/https://recipesapi.herokuapp.com/api/search?q=" +
+                    recipeName +
+                    "&count=5"
+            )
+            .then((res) => {
+                console.log(res.data);
+                this.setState({
+                    recipes: [...res.data.recipes],
+                });
+            });
     };
     componentDidMount() {
         const json = localStorage.getItem("recipes");
         const recipes = JSON.parse(json);
         if (recipes)
             this.setState({
-                recipes
+                recipes,
             });
     }
 
@@ -46,7 +50,7 @@ export default class App extends Component {
                         <h1 className="App-title">Recipe Search</h1>
                     </header>
                     <Form getRecipe={this.getRecipe} />
-                    <Recipes recipes={recipes} />
+                    {this.state.recipes && <Recipes recipes={recipes} />}
                 </div>
             </div>
         );
