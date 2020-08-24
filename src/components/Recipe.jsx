@@ -8,6 +8,7 @@ export default class Recipe extends Component {
         activeRecipe: [],
     };
     componentDidMount = async () => {
+        document.title("Recipie of Your Choice");
         const { location } = this.props;
         let { recipe_id } = queryString.parse(location.search);
         const json = localStorage.getItem("recipeId");

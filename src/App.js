@@ -25,6 +25,7 @@ export default class App extends Component {
             });
     };
     componentDidMount() {
+        window.title='Recipie Finder'
         const json = localStorage.getItem("recipes");
         const recipes = JSON.parse(json);
         if (recipes)
