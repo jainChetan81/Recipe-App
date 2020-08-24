@@ -25,10 +25,17 @@ const Recipes = (props) => (
                                 Publisher : <span>{item.publisher}</span>
                             </p>
                         </div>
-                        <button className="recipe_buttons">
+                        <button
+                            onClick={() => {
+                                localStorage.setItem(
+                                    "recipeId",
+                                    item.recipe_id
+                                );
+                            }}
+                            className="recipe_buttons">
                             <Link
                                 to={{
-                                    pathname: `/recipe?recipe_id=${item.recipe_id}`,
+                                    pathname: `/finder/recipe?recipe_id=${item.recipe_id}`,
                                     // state: { item: item.recipe_id },
                                 }}>
                                 View Recipe

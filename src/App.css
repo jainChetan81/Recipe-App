@@ -103,21 +103,15 @@ input[type="text"] {
     outline: none;
 }
 
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #f3f3f3 inset;
-    -webkit-text-fill-color: #2c3e50 !important;
-}
-
-/******** RECIPE.js ********/
-
 .active-recipe {
     margin: 0 auto;
     width: 60%;
 }
 
 .active-recipe__img {
+    margin-top: 100px;
     height: 400px !important;
-    width: 400px !important;
+    width: 600px !important;
 }
 
 .active-recipe__title {

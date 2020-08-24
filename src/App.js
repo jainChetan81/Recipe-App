@@ -19,7 +19,6 @@ export default class App extends Component {
                     "&count=5"
             )
             .then((res) => {
-                console.log(res.data);
                 this.setState({
                     recipes: [...res.data.recipes],
                 });

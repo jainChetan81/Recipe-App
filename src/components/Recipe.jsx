@@ -9,8 +9,12 @@ export default class Recipe extends Component {
     };
     componentDidMount = async () => {
         const { location } = this.props;
-        const { recipe_id } = queryString.parse(location.search);
-        console.log(recipe_id);
+        let { recipe_id } = queryString.parse(location.search);
+        const json = localStorage.getItem("recipeId");
+        if (json) {
+            console.log(("cdm: ", json));
+            recipe_id = json;
+        }
         // const recipieId = this.props.location.state.item;
         await axios
             .get(
@@ -29,29 +33,37 @@ export default class Recipe extends Component {
         const recipe = this.state.activeRecipe;
         return (
             <div className="container">
-                {this.state.activeRecipe.length !== 0 && (
-                    <div className="active-recipe">
-                        <img
-                            src={recipe.image_url}
-                            alt={recipe.title}
-                            className="active-recipe__img"
-                        />
-                        <h3 className="active-recipe__title">{recipe.title}</h3>
-                        <h4 className="active-recipe__publisher">
-                            Publisher: <span>{recipe.publisher}</span>
-                        </h4>
-                        <p className="lead active-website">
-                            Website :{" "}
-                            <span>
-                                <a href={recipe.publisher_url}>
-                                    {recipe.publisher_url}
-                                </a>
-                            </span>
-                        </p>
-                        <button className="active-recipe__button">
-                            <Link to="/"> Go Home</Link>
-                        </button>
+                {recipe ? (
+                    <div>
+                        {recipe.length !== 0 && (
+                            <div className="active-recipe">
+                                <img
+                                    src={recipe.image_url}
+                                    alt={recipe.title}
+                                    className="active-recipe__img"
+                                />
+                                <h3 className="active-recipe__title">
+                                    {recipe.title}
+                                </h3>
+                                <h4 className="active-recipe__publisher">
+                                    Publisher: <span>{recipe.publisher}</span>
+                                </h4>
+                                <p className="lead active-website">
+                                    Website :{" "}
+                                    <span>
+                                        <a href={recipe.publisher_url}>
+                                            {recipe.publisher_url}
+                                        </a>
+                                    </span>
+                                </p>
+                                <button className="active-recipe__button">
+                                    <Link to="/"> Go Home</Link>
+                                </button>
+                            </div>
+                        )}{" "}
                     </div>
+                ) : (
+                    <h1>Loading...</h1>
                 )}
             </div>
         );
