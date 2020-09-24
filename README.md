@@ -1,1 +1,1 @@
-https://chetan-recipe-finder.herokuapp.com/
+https://chetan-recipie-finder.herokuapp.com/
